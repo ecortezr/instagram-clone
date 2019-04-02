@@ -1,23 +1,30 @@
 export default {
     Query: {
-        allCars: async(parent, args, { Car }) => {
-            const cars = await Car.find();
+        allUsers: async(parent, args, { models }) => {
+            const users = await models.User.find();
+
+            return users;
 
             // Cada id de MongoDB es un objeto, así que hay que transformarlos por string
-            return cars.map(car => {
-                car._id = car._id.toString;
+            /* return users.map(user => {
+                user._id = user._id.toString;
 
-                return car;
-            });
+                return user;
+            }); */
+        },
+        getUser: async(parent, args, { models }) => {
+            const user = await models.User.findOne(args);
+
+            return user;
         }
     },
 
     Mutation: {
-        createCar: async(parent, args, { Car }) => {
-            const car = await new Car(args).save();
-            car._id = car._id.toString;
+        createUser: async(parent, args, { models }) => {
+            const user = await new models.User(args).save();
+            //user._id = user._id.toString;
 
-            return car;
+            return user;
         }
     }
 }

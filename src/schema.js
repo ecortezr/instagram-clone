@@ -2,17 +2,19 @@ import { gql } from 'apollo-server-express';
 
 export default gql `
 
-    type Car {
-        _id: String!
-        name: String
+    type User {
+        _id: ID!
+        username: String!
+        password: String!
     }
 
     type Query {
-        allCars: [Car!]! @cacheControl(maxAge: 60)
+        allUsers: [User!]! @cacheControl(maxAge: 60)
+        getUser(_id: ID!): User!
     }
 
     type Mutation {
-        createCar(name: String!): Car!
+        createUser(username: String!, password: String!): User!
     }
 
 `;

@@ -2,7 +2,7 @@
     "curly": true,
     "eqeqeq": true,
     "nocomma": true,
-    "esversion": 6,
+    "esversion": 8,
     "latedef": true,
     "unused": true
 }
